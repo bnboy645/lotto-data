@@ -2,8 +2,12 @@ name: Update Lotto Data
 
 on:
   schedule:
-    # Every Saturday at 12:30 UTC (= 21:30 KST, 30 min after draw)
+    # Every Saturday at 12:30 UTC (= 21:30 KST, 45 min after draw)
     - cron: '30 12 * * 6'
+    # Retry: Saturday 14:00 UTC (= 23:00 KST) in case first attempt missed
+    - cron: '0 14 * * 6'
+    # Retry: Sunday 00:00 UTC (= 09:00 KST next day)
+    - cron: '0 0 * * 0'
   workflow_dispatch: # Allow manual trigger
 
 jobs:
